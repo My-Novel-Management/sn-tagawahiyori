@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 '''
-Story: "title"
+Story: "The Tagawa-Biyori"
 '''
 import os
 import sys
@@ -11,7 +11,7 @@ from storybuilder.builder.world import World
 from storybuilder.assets import basic
 from config import ASSET
 # import scenes
-# from scenes import xxx
+from scenes import Stage
 
 
 ################################################################
@@ -25,19 +25,31 @@ from config import ASSET
 ################################################################
 
 # Constant
-TITLE = "作品タイトル"
-OUTLINE = "あらすじ"
-MAJOR, MINOR, MICRO = 0, 0, 1
+TITLE = "田川日和と恋の雨"
+OUTLINE = "同じクラスの田川君は何故か晴れの日に学校をサボることが多かった"
+MAJOR, MINOR, MICRO = 1, 1, 0
 
 
 # Episodes
-def ep_xxx(w: World):
-    return w.episode('episode_title',
-            outline="description")
+def ep1(w: World):
+    return w.episode('1',
+            Stage.sc_tagawa_biyori(w),
+            Stage.sc_bluesky(w),
+            Stage.sc_paddyfield(w),
+            )
 
+def ep2(w: World):
+    return w.episode("2",
+            Stage.sc_rain(w),
+            Stage.sc_myfuture(w),
+            Stage.sc_ending(w),
+            w.symbol("（了）"),
+            )
 
 def ch_main(w: World):
     return w.chapter('main',
+            ep1(w),
+            ep2(w),
             )
 
 
